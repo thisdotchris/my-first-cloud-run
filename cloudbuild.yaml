@@ -2,17 +2,17 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 steps:
-  - name: node:20
+  - name: 'node:$_NODE_VERSION'
     entrypoint: npm
     args: ['i', '-g', 'pnpm@10.15.1']
 
   # Install dependencies
-  - name: node:20
+  - name: 'node:$_NODE_VERSION'
     entrypoint: pnpm
     args: ['install']
 
   # Run tests
-  - name: node:20
+  - name: 'node:$_NODE_VERSION'
     entrypoint: pnpm
     args: ['test']
 
