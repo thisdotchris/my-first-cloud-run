@@ -1,6 +1,3 @@
-options:
-  logging: CLOUD_LOGGING_ONLY
-
 steps:
   # Install dependencies
   - name: node:20
@@ -15,6 +12,4 @@ steps:
 # Set a longer timeout since NestJS builds can take a while
 timeout: 1800s
 
-# Optional: Cache npm packages between builds
-options:
-  machineType: 'E2_HIGHCPU_8'  # Use a powerful machine for faster builds
+logsBucket: 'CLOUD_LOGGING_ONLY'
