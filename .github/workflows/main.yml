@@ -18,8 +18,11 @@ jobs:
       
       - name: check node version
         run: node -v
+
+      - name: check pnpm version
+        run: pnpm -v
       
-      - name: install pnpme
+      - name: install pnpm
         run: npm i -g pnpm@10.15.1
       
       - name: install deps
