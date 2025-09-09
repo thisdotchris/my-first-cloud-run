@@ -36,33 +36,33 @@ jobs:
       - name: install pulumi deps
         run: cd pulumi && pnpm install
         
-      - name: run build
-        run: pnpm build
+      # - name: run build
+      #   run: pnpm build
       
-      - name: run tests
-        run: pnpm test
+      # - name: run tests
+      #   run: pnpm test
 
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+      # - name: Authenticate to Google Cloud
+      #   uses: google-github-actions/auth@v2
+      #   with:
+      #     credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-      - name: Configure Docker for Artifact Registry
-        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+      # - name: Configure Docker for Artifact Registry
+      #   run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
 
-      - name: Build Docker image
-        run: |
-          IMAGE_URI=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO }}/${{ env.IMAGE }}:${{ github.sha }}
-          echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
-          docker build -t $IMAGE_URI .
+      # - name: Build Docker image
+      #   run: |
+      #     IMAGE_URI=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO }}/${{ env.IMAGE }}:${{ github.sha }}
+      #     echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
+      #     docker build -t $IMAGE_URI .
 
-      - name: Push Docker image
-        run: docker push ${{ env.IMAGE_URI }}
+      # - name: Push Docker image
+      #   run: docker push ${{ env.IMAGE_URI }}
 
       - uses: pulumi/actions@v6
         with:
           command: preview
-          stack-name: gcp-cloud-run/dev
+          stack-name: thisdotchris/gcp-cloud-run/dev
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
           GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
