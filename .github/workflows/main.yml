@@ -62,7 +62,7 @@ jobs:
       - uses: pulumi/actions@v6
         with:
           command: preview
-          stack-name: thisdotchris/gcp-cloud-run
+          stack-name: gcp-cloud-run/dev
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
           GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}

@@ -41,8 +41,9 @@ const cloudRunService = new gcp.cloudrun.Service(
       spec: {
         containers: [
           {
-            image:
-              /* process.env.IMAGE_URI || '' */ 'asia-southeast1-docker.pkg.dev/my-terraform-project-471305/my-first-cloud-run-repo/my-cloud-run-image:46c72e919c1986dd2eb55029c54ede80461a5750',
+            image: process.env.IMAGE_URI || '',
+            // image:
+            //   'asia-southeast1-docker.pkg.dev/my-terraform-project-471305/my-first-cloud-run-repo/my-cloud-run-image:46c72e919c1986dd2eb55029c54ede80461a5750',
             ports: [{ containerPort: 3000 }],
           },
         ],
