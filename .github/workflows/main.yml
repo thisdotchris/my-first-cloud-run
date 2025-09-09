@@ -29,10 +29,13 @@ jobs:
       
       - name: install pnpm
         run: npm i -g pnpm@10.15.1
-      
+    
       - name: install deps
         run: pnpm install
-      
+    
+      - name: install pulumi deps
+        run: cd pulumi && pnpm install
+        
       - name: run build
         run: pnpm build
       
