@@ -1,0 +1,10 @@
+name: gcp-cloud-run
+runtime:
+  name: nodejs
+  options:
+    packagemanager: pnpm
+description: api service
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/742dac87-5390-4ce2-bdef-798dd3dca7ff.zip

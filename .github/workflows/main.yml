@@ -8,8 +8,10 @@ on:
 env:
   PROJECT_ID: my-terraform-project-471305
   REGION: asia-southeast1
+  REPO_OWNER: thisdotchris
   REPO:  my-first-cloud-run-repo
   IMAGE: my-cloud-run-image
+  SERVICE: my-cloud-run-service
 
 jobs:
   preview:
@@ -53,3 +55,18 @@ jobs:
 
       - name: Push Docker image
         run: docker push ${{ env.IMAGE_URI }}
+
+      - uses: pulumi/actions@v6
+        with:
+          command: preview
+          stack-name: org-name/stack-name # When using an individual account, only use stack-name.
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+          IMAGE_URI: ${{ env.IMAGE_URI }}
+          PROJECT_ID: ${{ env.PROJECT_ID }}
+          REGION: ${{ env.REGION }}
+          REPO_OWNER: ${{ env.REPO_OWNER }}
+          REPO: ${{ env.REPO }}
+          IMAGE: ${{ env.IMAGE }}
+          SERVICE: ${{ env.SERVICE }}
